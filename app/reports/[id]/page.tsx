@@ -176,11 +176,12 @@ export default async function CaseDetail(props: { params: Promise<{ id: string }
 
             <FadeIn direction="left" delay={0.5}>
               <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 sticky top-24">
-                <button className="w-full bg-[#d4af37] text-[#002147] font-bold py-4 rounded-lg hover:bg-[#e6c248] transition shadow-md active:scale-95 mb-3 flex items-center justify-center text-lg">
-                  📥 Download PDF
+                <button className="w-full bg-[#d4af37] text-[#002147] font-bold py-4 rounded-lg hover:bg-[#e6c248] transition shadow-md active:scale-95 mb-3 flex items-center justify-center text-base md:text-lg">
+                  <span>📥</span> <span className="ml-2">Download PDF</span>
                 </button>
-                <button className="w-full border border-[#002147] text-[#002147] font-bold py-4 rounded-lg hover:bg-gray-50 transition active:scale-95 flex items-center justify-center text-lg">
-                  Share Case
+                {/* Ensure this button text doesn't wrap awkwardly */}
+                <button className="w-full border border-[#002147] text-[#002147] font-bold py-4 rounded-lg hover:bg-gray-50 transition active:scale-95 flex items-center justify-center text-base md:text-lg">
+                    <span className="ml-2">Share Case</span>
                 </button>
               </div>
             </FadeIn>
@@ -191,15 +192,27 @@ export default async function CaseDetail(props: { params: Promise<{ id: string }
         {/* FINAL DECISION */}
         <FadeIn direction="up" delay={0.5}>
           <div className="w-full bg-[#002147] rounded-2xl shadow-2xl border-t-8 border-[#d4af37] p-8 md:p-12 text-center relative overflow-hidden mt-8">
+            
+            {/* FIX: Reduce icon size on mobile (text-8xl) and large on desktop (md:text-[15rem]) */}
             <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none flex justify-center items-center">
-               <span className="text-[15rem]">⚖️</span>
+                <span className="text-8xl md:text-[15rem]">⚖️</span>
             </div>
+
             <div className="relative z-10">
-              <h3 className="text-[#d4af37] font-bold uppercase tracking-[0.2em] text-sm md:text-base mb-6">Final Verdict</h3>
+              <h3 className="text-[#d4af37] font-bold uppercase tracking-[0.2em] text-xs md:text-base mb-4 md:mb-6">
+                Final Verdict
+              </h3>
+              
               <div className="max-w-4xl mx-auto">
-                <p className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight">"{caseData.decision}"</p>
+                {/* FIX: Reduce text size on mobile (text-2xl) */}
+                <p className="text-2xl md:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight">
+                  "{caseData.decision}"
+                </p>
               </div>
-              <div className="mt-8 flex justify-center"><span className="inline-block w-24 h-1 bg-[#d4af37] rounded-full"></span></div>
+              
+              <div className="mt-8 flex justify-center">
+                <span className="inline-block w-16 md:w-24 h-1 bg-[#d4af37] rounded-full"></span>
+              </div>
             </div>
           </div>
         </FadeIn>

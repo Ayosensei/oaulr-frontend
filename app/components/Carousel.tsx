@@ -66,7 +66,8 @@ export default function Carousel() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="text-5xl md:text-6xl font-bold mb-4 tracking-tight"
+              // CHANGED: text-3xl for mobile, md:text-6xl for desktop
+              className="text-3xl md:text-6xl font-bold mb-4 tracking-tight px-4"
             >
               {slides[currentIndex].title}
             </motion.h2>
@@ -74,7 +75,8 @@ export default function Carousel() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.7 }}
-              className="text-xl md:text-2xl text-gray-200 max-w-2xl"
+              // CHANGED: text-lg for mobile, md:text-2xl for desktop
+              className="text-lg md:text-2xl text-gray-200 max-w-2xl px-2"
             >
               {slides[currentIndex].subtitle}
             </motion.p>
