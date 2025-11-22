@@ -9,13 +9,13 @@ const slides = [
   {
     id: 1,
     url: "https://images.unsplash.com/photo-1479142506502-19b3a3b7ff33?q=80&w=870&auto=format&fit=crop",
-    title: "Upholding Justice",
+    title: "OAU Law Reports Unit, Faculty of Law, OAU",
     subtitle: "The premier repository for OAU legal precedents."
   },
   {
     id: 2,
     url: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2600&auto=format&fit=crop",
-    title: "Faculty of Law, OAU",
+    title: "Upholding Justice",
     subtitle: "Excellence in legal education and reporting."
   },
   {
@@ -37,9 +37,9 @@ export default function Carousel() {
   }, []);
 
   return (
-    <div className="relative h-[500px] w-full overflow-hidden bg-[#002147]"> 
+    <div className="relative h-[500px] w-full overflow-hidden bg-[#002147]">
       {/* Added bg color to prevent white flash while image loads */}
-      
+
       <AnimatePresence mode='wait'>
         <motion.div
           key={currentIndex}
@@ -51,8 +51,8 @@ export default function Carousel() {
         >
           <div className="relative h-full w-full">
             {/* Use Next.js Image Component */}
-            <Image 
-              src={slides[currentIndex].url} 
+            <Image
+              src={slides[currentIndex].url}
               alt={slides[currentIndex].title}
               fill // Automatically fills the parent container
               priority={currentIndex === 0} // Prioritize loading the first image
@@ -62,7 +62,7 @@ export default function Carousel() {
           </div>
 
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4 z-10">
-            <motion.h2 
+            <motion.h2
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
@@ -71,7 +71,7 @@ export default function Carousel() {
             >
               {slides[currentIndex].title}
             </motion.h2>
-            <motion.p 
+            <motion.p
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.7 }}
@@ -90,9 +90,8 @@ export default function Carousel() {
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentIndex ? "bg-[#d4af37] w-8" : "bg-white/50 hover:bg-white"
-            }`}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex ? "bg-[#d4af37] w-8" : "bg-white/50 hover:bg-white"
+              }`}
           />
         ))}
       </div>
