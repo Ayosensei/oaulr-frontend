@@ -19,15 +19,14 @@ export default function LoginPage() {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
+        credentials: "include"
       });
 
       const data = await res.json();
 
       if (!res.ok) throw new Error(data.error || 'Login failed');
 
-      // 1. Save user info to LocalStorage (The "Poor man's session")
-      localStorage.setItem('oaulr_user', JSON.stringify(data.user));
 
       // 2. Redirect to Dashboard/Home
       alert(`Welcome back, ${data.user.name}!`);
