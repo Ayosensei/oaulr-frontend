@@ -78,7 +78,7 @@ export default function RegisterPage() {
             
             {/* Inputs... I'll condense the repetition, use the same styles as before */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+              <label className="block text-sm font-medium tcreaext-gray-700 mb-1">Full Name</label>
               <input name="name" type="text" required onChange={handleChange}
                 className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#002147]" />
             </div>
