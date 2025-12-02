@@ -12,14 +12,14 @@ interface FadeInProps {
   fullWidth?: boolean;
 }
 
-export default function FadeIn({ 
-  children, 
-  delay = 0, 
-  direction = 'up', 
+export default function FadeIn({
+  children,
+  delay = 0,
+  direction = 'up',
   className = '',
   fullWidth = false
 }: FadeInProps) {
-  
+
   // Define the start position (hidden state)
   const directions = {
     up: { y: 20 },
@@ -34,16 +34,14 @@ export default function FadeIn({
   return (
     <motion.div
       initial={initial}
-      // CHANGED: 'animate' runs immediately when the component loads.
       // It does NOT wait for the user to scroll.
-      animate={{ opacity: 1, x: 0, y: 0 }} 
-      
-      // We removed the 'viewport' prop entirely since we don't care about scroll position anymore.
-      
-      transition={{ 
-        duration: 0.5, 
-        delay: delay, 
-        ease: "easeOut" 
+      animate={{ opacity: 1, x: 0, y: 0 }}
+
+
+      transition={{
+        duration: 0.5,
+        delay: delay,
+        ease: "easeOut"
       }}
       className={`${className} ${fullWidth ? 'w-full' : ''}`}
     >

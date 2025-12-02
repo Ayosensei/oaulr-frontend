@@ -1,6 +1,7 @@
 // app/reports/[id]/page.tsx
 import Link from 'next/link';
 import FadeIn from '../../components/FadeIn';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 // === 1. THE MOCK DATABASE ===
 const casesDatabase: any = {
@@ -22,19 +23,19 @@ const casesDatabase: any = {
   },
   "2": {
     id: "2", title: "State v. Adebayo & Ors", date: "10th November, 2023", court: "Court of Appeal, Akure", appealNo: "CA/AK/45/2023",
-    decision: "Appeal Dismissed.", catchphrase: "CRIMINAL LAW — EVIDENCE", facts: "Placeholder...", issues: [], holdings: [], justices: [], counsel: {appellant:"", respondent:""}, casesReferredTo: []
+    decision: "Appeal Dismissed.", catchphrase: "CRIMINAL LAW — EVIDENCE", facts: "Placeholder...", issues: [], holdings: [], justices: [], counsel: { appellant: "", respondent: "" }, casesReferredTo: []
   },
   "3": {
     id: "3", title: "OAU Ventures v. Tech Corp", date: "28th October, 2023", court: "Federal High Court, Osogbo", appealNo: "FHC/OS/99/2022",
-    decision: "Judgment for Defendant.", catchphrase: "COMMERCIAL LAW — CONTRACTS", facts: "Placeholder...", issues: [], holdings: [], justices: [], counsel: {appellant:"", respondent:""}, casesReferredTo: []
+    decision: "Judgment for Defendant.", catchphrase: "COMMERCIAL LAW — CONTRACTS", facts: "Placeholder...", issues: [], holdings: [], justices: [], counsel: { appellant: "", respondent: "" }, casesReferredTo: []
   },
   "4": {
     id: "4", title: "In Re: Faculty Election 2021", date: "2021", court: "Student Judicial Council", appealNo: "SJC/001/2021",
-    decision: "Election Nullified.", catchphrase: "ADMINISTRATIVE LAW — ELECTORAL MATTERS", facts: "Placeholder...", issues: [], holdings: [], justices: [], counsel: {appellant:"", respondent:""}, casesReferredTo: []
+    decision: "Election Nullified.", catchphrase: "ADMINISTRATIVE LAW — ELECTORAL MATTERS", facts: "Placeholder...", issues: [], holdings: [], justices: [], counsel: { appellant: "", respondent: "" }, casesReferredTo: []
   },
   "5": {
     id: "5", title: "Dr. X v. Governing Council", date: "2020", court: "National Industrial Court", appealNo: "NICN/IB/22/2020",
-    decision: "Claim Succeeded.", catchphrase: "EMPLOYMENT LAW — FAIR HEARING", facts: "Placeholder...", issues: [], holdings: [], justices: [], counsel: {appellant:"", respondent:""}, casesReferredTo: []
+    decision: "Claim Succeeded.", catchphrase: "EMPLOYMENT LAW — FAIR HEARING", facts: "Placeholder...", issues: [], holdings: [], justices: [], counsel: { appellant: "", respondent: "" }, casesReferredTo: []
   }
 };
 
@@ -61,15 +62,20 @@ export default async function CaseDetail(props: { params: Promise<{ id: string }
   return (
     <div className="bg-gray-50 min-h-screen py-12 text-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <FadeIn direction="right">
-          <Link href="/reports" className="inline-flex items-center text-base font-bold text-[#d4af37] hover:text-[#002147] mb-8 transition group">
-            <span className="group-hover:-translate-x-1 transition-transform mr-1">&larr;</span> Back to Case List
-          </Link>
+          <Breadcrumbs
+            items={[
+              { label: 'Home', href: '/' },
+              { label: 'Reports', href: '/reports' },
+              { label: caseData.category, href: '/reports' }, // Linking category to reports for now
+              { label: caseData.title }
+            ]}
+          />
         </FadeIn>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-12">
-          
+
           {/* MAIN CONTENT */}
           <div className="lg:col-span-8 space-y-10">
             <FadeIn direction="up">
@@ -181,35 +187,35 @@ export default async function CaseDetail(props: { params: Promise<{ id: string }
                 </button>
                 {/* Ensure this button text doesn't wrap awkwardly */}
                 <button className="w-full border border-[#002147] text-[#002147] font-bold py-4 rounded-lg hover:bg-gray-50 transition active:scale-95 flex items-center justify-center text-base md:text-lg">
-                    <span className="ml-2">Share Case</span>
+                  <span className="ml-2">Share Case</span>
                 </button>
               </div>
             </FadeIn>
           </div>
 
-        </div> 
+        </div>
 
         {/* FINAL DECISION */}
         <FadeIn direction="up" delay={0.5}>
           <div className="w-full bg-[#002147] rounded-2xl shadow-2xl border-t-8 border-[#d4af37] p-8 md:p-12 text-center relative overflow-hidden mt-8">
-            
+
             {/* FIX: Reduce icon size on mobile (text-8xl) and large on desktop (md:text-[15rem]) */}
             <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none flex justify-center items-center">
-                <span className="text-8xl md:text-[15rem]">⚖️</span>
+              <span className="text-8xl md:text-[15rem]">⚖️</span>
             </div>
 
             <div className="relative z-10">
               <h3 className="text-[#d4af37] font-bold uppercase tracking-[0.2em] text-xs md:text-base mb-4 md:mb-6">
                 Final Verdict
               </h3>
-              
+
               <div className="max-w-4xl mx-auto">
                 {/* FIX: Reduce text size on mobile (text-2xl) */}
                 <p className="text-2xl md:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight">
                   "{caseData.decision}"
                 </p>
               </div>
-              
+
               <div className="mt-8 flex justify-center">
                 <span className="inline-block w-16 md:w-24 h-1 bg-[#d4af37] rounded-full"></span>
               </div>
