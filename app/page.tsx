@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import FadeIn from './components/FadeIn';
 import Carousel from './components/Carousel'; // Import the slider
-import { reports } from '../data/reports';
-
+import { reports } from './api/data/reports'
 const recentCases = reports.slice(0, 3);
 
 export default function Home() {

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import FadeIn from '../components/FadeIn'; // Adjust path to go up one level
 
 // Mock Data
-import { reports } from '../../data/reports';
+import { reports } from '../api/data/reports';
 import ReportsClient from './ReportsClient';
 
 export default function ReportsPage() {
