@@ -5,6 +5,7 @@ import FadeIn from '../../components/FadeIn';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import DownloadButton from './download';
 import ShareButton from '@/app/components/ShareButton';
+import { getBaseUrl } from '@/app/components/BaseUrl';
 type CourtCase = {
   id: number;
   FILE_NAME: string;
@@ -31,14 +32,13 @@ type CourtCase = {
 export default async function CaseDetail(props: { params: Promise<{ id: string }> }) {
   const params = await props.params; // <--- THIS FIXES THE ERROR
 
-
-const res = await fetch(`http://localhost:3000/api/cases`, {
+const baseUrl = getBaseUrl()
+const res = await fetch(`${baseUrl}/api/cases`, {
   method: "GET",
   headers: {
     "Content-type": "application/json"
   },
   cache: 'no-store' ,
-  next: {revalidate: 60}
 })
 
 
@@ -185,7 +185,7 @@ const caseData =  cases.find((c: CourtCase)=> c.id === Number(params.id))
                 {/* Ensure this button text doesn't wrap awkwardly */}
                 <ShareButton 
   title={caseData.TITLE}
-  url={`https://localhost:3000/reports/${params.id}`}
+  url={`${baseUrl}/reports/${params.id}`}
 />
               </div>
             </FadeIn>
