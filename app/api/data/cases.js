@@ -98,8 +98,8 @@ const cases =[
   ],
   "OUTCOME": "Appeal Dismissed",
   "Counsel": {
-    "Appellant": "A. B. Ihua-Madueniyi, Esq. with him, D. G. Uduru, Esq.",
-    "Respondent": "C. I. Umeche, Esq"
+    "APPELLANTS": "A. B. Ihua-Madueniyi, Esq. with him, D. G. Uduru, Esq.",
+    "RESPONDENTS": "C. I. Umeche, Esq"
   }
 }
 ,
@@ -155,8 +155,8 @@ const cases =[
       "OUTCOME": "Appeal Dismissed",
 
       "Counsel":{
-    "Appellants":"I.O. Aniakor, Esq. (with him, Mrs. Jessica Akabike)",
-   "Respondent":"Ogunmuyiwa Balogun, Esq.  Babatunde Ige, Esq. O. Ihinmikalu, Esq. and R. Yusuf, Esq.)  .G. Ojo, Esq.   O. Aliu, Esq. , Elizabeth Tijani, Esq.) "
+    "APPELLANTS":"I.O. Aniakor, Esq. (with him, Mrs. Jessica Akabike)",
+   "RESPONDENTS":"Ogunmuyiwa Balogun, Esq.  Babatunde Ige, Esq. O. Ihinmikalu, Esq. and R. Yusuf, Esq.)  .G. Ojo, Esq.   O. Aliu, Esq. , Elizabeth Tijani, Esq.) "
       }
     },
   
@@ -202,8 +202,8 @@ const cases =[
       "OUTCOME": "Appeal Allowed",
 
       "Counsel":
- {"Appellant":" Chinasa Unaegbunam, SAN, (with  Pasch,al Ukah, Esq. and Akinola Oladimeji, Esq.) ",
-"Respondent":"Clement Onuwenwunor, SAN, (with him, Gerald Ogokeh, Esq. Raphael Owoicho, Esq. Adakole, Esq.) .Chima Okereke, Esq. Kayode Omosehin, Esq." }
+ {"APPELLANTS":" Chinasa Unaegbunam, SAN, (with  Pasch,al Ukah, Esq. and Akinola Oladimeji, Esq.) ",
+"RESPONDENTS":"Clement Onuwenwunor, SAN, (with him, Gerald Ogokeh, Esq. Raphael Owoicho, Esq. Adakole, Esq.) .Chima Okereke, Esq. Kayode Omosehin, Esq." }
     },
     
     {
@@ -266,10 +266,10 @@ const cases =[
         "Amobi v.Ogidi Union (Nig) &Ors(2021) LPELR-57337(SC) p 52-53paras. A – C",
         "Roe Ltd v. UNN (2018) 6 NWLR Pt. (1616) p."
       ],
-      "COUNSELS": [
-        "MofesonaTayo-Oyetibo, Esq. with him,EutareNwaozulufor Appellant.",
-        "IfeOluAkindoju, Esq.for Respondent."
-      ],
+      "Counsel": {
+      "APPELLANTS":  "MofesonaTayo-Oyetibo, Esq. with him,EutareNwaozulufor ",
+       "Respondent": "IfeOluAkindoju, Esq."
+    },
       "CONCURRING_OPINIONS": [
         "JOHN INYANG OKORO, J.S.C.: I have had the privilege of reading in draft the judgment of my learned brother, Uwani Musa Abba Aji, JSC, just delivered. I agree with His Lordship that the appeal lacks merit and should be dismissed. I accordingly dismiss the appeal and abide by the consequential orders made in the lead judgment.",
         "CHIMA CENTUS NWEZE, J.S.C.: I have had the privilege of reading in draft the judgment of my learned brother, Uwani Musa Abba Aji, JSC, just delivered. I agree with His Lordship that the appeal lacks merit and should be dismissed. I accordingly dismiss the appeal and abide by the consequential orders made in the lead judgment.",
@@ -403,8 +403,8 @@ const cases =[
       ],
       "OUTCOME": "Application Dismissed",
       "Counsel":{
-"Appellants": "R.A Ogunwole SAN, (with him, O.D Erinoso) ",
-"Respondent" :"Adeniyi Akintola SAN, (with him, Oladele Oyelami, Esq, Sharon Anyaduba, Esq, Oluwafemi Abimbola, Esq.)   Segun Adebayo "
+"APPELLANTS": "R.A Ogunwole SAN, (with him, O.D Erinoso) ",
+"RESPONDENTS" :"Adeniyi Akintola SAN, (with him, Oladele Oyelami, Esq, Sharon Anyaduba, Esq, Oluwafemi Abimbola, Esq.)   Segun Adebayo "
     }},
 
   {
@@ -468,8 +468,8 @@ const cases =[
   ],
   "OUTCOME": "Appeal Dismissed",
   "Counsel": {
-    "Appellant": "I.E. Uzuegbu, Esq",
-    "Respondents": "Uzor Ikenga, Esq."
+    "APPELLANTS": "I.E. Uzuegbu, Esq",
+    "RESPONDENTS": "Uzor Ikenga, Esq."
   }
 }
 
