@@ -1,11 +1,14 @@
-
+'use client';
 
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import FadeIn from '../../components/FadeIn';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import DownloadButton from './download';
 import ShareButton from '@/app/components/ShareButton';
 import { getBaseUrl } from '@/app/components/BaseUrl';
+
 type CourtCase = {
   id: number;
   FILE_NAME: string;
@@ -29,35 +32,58 @@ type CourtCase = {
   }
 };
 
-export default async function CaseDetail(props: { params: Promise<{ id: string }> }) {
-  const params = await props.params; // <--- THIS FIXES THE ERROR
+export default function CaseDetail() {
+  const params = useParams();
+  const id = params.id as string;
 
-const baseUrl = getBaseUrl()
-const res = await fetch(`${baseUrl}/api/cases`, {
-  method: "GET",
-  headers: {
-    "Content-type": "application/json"
-  },
-  cache: 'no-store' ,
-})
+  const [caseData, setCaseData] = useState<CourtCase | null>(null);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    async function fetchData() {
+      const baseUrl = getBaseUrl();
+      const res = await fetch(`${baseUrl}/api/cases`, {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json"
+        },
+        cache: 'no-store',
+      });
 
-const {cases} = await res.json()
+      if (!res.ok) {
+        console.error('Failed to fetch cases');
+        setCaseData(null);
+        setLoading(false);
+        return;
+      }
 
-const caseData =  cases.find((c: CourtCase)=> c.id === Number(params.id))
+      const { cases } = await res.json();
+      const foundCase = cases.find((c: CourtCase) => c.id === Number(id));
+      setCaseData(foundCase || null);
+      setLoading(false);
+    }
 
+    fetchData();
+  }, [id]);
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
+        <h2 className="text-3xl font-bold text-[#002147]">Loading...</h2>
+      </div>
+    );
+  }
 
   if (!caseData) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
         <h2 className="text-3xl font-bold text-[#002147]">Case Not Found</h2>
-        <p className="text-gray-600 mt-2">ID: {params.id}</p>
+        <p className="text-gray-600 mt-2">ID: {id}</p>
         <Link href="/reports" className="text-[#d4af37] font-bold hover:underline mt-4 text-lg">&larr; Go Back</Link>
       </div>
     );
   }
-  
+
   return (
     <div className="bg-gray-50 min-h-screen py-12 text-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,8 +93,8 @@ const caseData =  cases.find((c: CourtCase)=> c.id === Number(params.id))
             items={[
               { label: 'Home', href: '/' },
               { label: 'Reports', href: '/reports' },
-              { label: caseData.category, href: '/reports' }, // Linking category to reports for now
-              { label: caseData.title }
+            
+              { label: caseData.TITLE }
             ]}
           />
         </FadeIn>
@@ -90,7 +116,7 @@ const caseData =  cases.find((c: CourtCase)=> c.id === Number(params.id))
                   {caseData.APPEAL_NO}
                 </p>
                 <div className="bg-gray-50 border-l-4 border-[#d4af37] p-6 italic text-gray-800 font-serif text-lg leading-relaxed">
-                  {caseData. JURISDICTION_ISSUE}
+                  {caseData.JURISDICTION_ISSUE}
                 </div>
               </div>
             </FadeIn>
@@ -181,12 +207,12 @@ const caseData =  cases.find((c: CourtCase)=> c.id === Number(params.id))
 
             <FadeIn direction="left" delay={0.5}>
               <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 sticky top-24">
-                 <DownloadButton caseData={caseData}/>
+                <DownloadButton caseData={caseData} />
                 {/* Ensure this button text doesn't wrap awkwardly */}
-                <ShareButton 
-  title={caseData.TITLE}
-  url={`${baseUrl}/reports/${params.id}`}
-/>
+                <ShareButton
+                  title={caseData.TITLE}
+                  url={`${getBaseUrl()}/reports/${id}`}
+                />
               </div>
             </FadeIn>
           </div>
