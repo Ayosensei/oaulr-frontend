@@ -63,11 +63,11 @@ export default function ReportsClient({ initialReports }: ReportsClientProps) {
                             className="w-full border border-gray-300 rounded-md px-4 py-2 text-gray-900 focus:outline-none focus:border-[#002147] focus:ring-1 focus:ring-[#002147]"
                         />
                     </div>
-                    <div className="flex gap-4">
+                    <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
                         <select
                             value={selectedYear}
                             onChange={(e) => setSelectedYear(e.target.value)}
-                            className="border border-gray-300 rounded-md px-4 py-2 text-gray-900 focus:outline-none"
+                            className="w-full sm:w-auto border border-gray-300 rounded-md px-4 py-2 text-gray-900 focus:outline-none"
                         >
                             {years.map(year => (
                                 <option key={year} value={year}>{year}</option>
@@ -76,7 +76,7 @@ export default function ReportsClient({ initialReports }: ReportsClientProps) {
                         <select
                             value={selectedCategory}
                             onChange={(e) => setSelectedCategory(e.target.value)}
-                            className="border border-gray-300 rounded-md px-4 py-2 text-gray-900 focus:outline-none max-w-[200px]"
+                            className="w-full sm:w-auto border border-gray-300 rounded-md px-4 py-2 text-gray-900 focus:outline-none md:max-w-[200px]"
                         >
                             {categories.map(cat => (
                                 <option key={cat} value={cat}>{cat}</option>
@@ -91,12 +91,12 @@ export default function ReportsClient({ initialReports }: ReportsClientProps) {
                 {filteredReports.length > 0 ? (
                     filteredReports.map((lawCase, index) => (
                         <FadeIn key={lawCase.id} delay={index * 0.1} direction="up">
-                            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:border-[#d4af37] hover:shadow-md transition duration-300 flex flex-col md:flex-row justify-between items-start md:items-center transform hover:-translate-y-1">
+                            <div className="bg-white p-4 md:p-6 rounded-lg shadow-sm border border-gray-200 hover:border-[#d4af37] hover:shadow-md transition duration-300 flex flex-col md:flex-row justify-between items-start md:items-center transform hover:-translate-y-1">
 
                                 {/* Left: Case Details */}
-                                <div className="flex-grow pr-4">
-                                    <div className="flex items-center space-x-2 mb-1">
-                                        <span className="px-2 py-1 bg-blue-50 text-[#002147] text-xs font-bold uppercase rounded">
+                                <div className="flex-grow pr-0 md:pr-4 mb-4 md:mb-0 w-full">
+                                    <div className="flex items-center space-x-2 mb-2">
+                                        <span className="px-2 py-1 bg-blue-50 text-[#002147] text-[10px] md:text-xs font-bold uppercase rounded">
                                             {lawCase.category}
                                         </span>
                                         <span className="text-gray-400 text-xs font-medium">•</span>
@@ -104,11 +104,11 @@ export default function ReportsClient({ initialReports }: ReportsClientProps) {
                                     </div>
 
                                     <Link href={`/reports/${lawCase.id}`}>
-                                        <h3 className="text-xl font-bold text-[#002147] hover:underline cursor-pointer">
+                                        <h3 className="text-lg md:text-xl font-bold text-[#002147] hover:underline cursor-pointer">
                                             {lawCase.title}
                                         </h3>
                                     </Link>
-                                    <p className="text-[#d4af37] font-medium text-sm mt-1 italic">
+                                    <p className="text-[#d4af37] font-medium text-xs md:text-sm mt-1 italic">
                                         {lawCase.citation}
                                     </p>
                                     <p className="text-gray-600 text-sm mt-3 line-clamp-2">
@@ -117,20 +117,20 @@ export default function ReportsClient({ initialReports }: ReportsClientProps) {
                                 </div>
 
                                 {/* Right: Action Button */}
-                                <div className="mt-4 md:mt-0 min-w-[140px] text-right">
+                                <div className="min-w-full md:min-w-[140px] md:text-right">
                                     {lawCase.isFree ? (
                                         <Link
                                             href={`/reports/${lawCase.id}`}
-                                            className="w-full border-2 border-[#002147] text-[#002147] font-bold py-2 px-4 rounded hover:bg-[#002147] hover:text-white transition-all duration-300 flex items-center justify-center active:scale-95"
+                                            className="w-full border-2 border-[#002147] text-[#002147] font-bold py-2 px-4 rounded hover:bg-[#002147] hover:text-white transition-all duration-300 flex items-center justify-center active:scale-95 text-sm md:text-base"
                                         >
-                                            <span className="mr-2">📄</span> Read Full
+                                            <span className="mr-2">Read Full</span>
                                         </Link>
                                     ) : (
-                                        <div className="flex flex-col items-end">
-                                            <Link href="/subscribe" className="w-full bg-gray-100 text-gray-400 font-bold py-2 px-4 rounded border border-gray-200 flex items-center justify-center cursor-pointer hover:bg-gray-200 hover:text-gray-600 transition">
-                                                <span className="mr-2">🔒</span> Locked
+                                        <div className="flex flex-col items-start md:items-end w-full">
+                                            <Link href="/subscribe" className="w-full bg-gray-100 text-gray-400 font-bold py-2 px-4 rounded border border-gray-200 flex items-center justify-center cursor-pointer hover:bg-gray-200 hover:text-gray-600 transition text-sm md:text-base">
+                                                <span className="mr-2">Locked</span> 
                                             </Link>
-                                            <p className="text-xs text-[#d4af37] mt-2 font-medium">Premium Access Only</p>
+                                            <p className="text-xs text-[#d4af37] mt-2 font-medium w-full text-center md:text-right">Premium Access Only</p>
                                         </div>
                                     )}
                                 </div>
