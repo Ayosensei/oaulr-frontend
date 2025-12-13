@@ -1,53 +1,52 @@
-// app/reports/[id]/page.tsx
+
+
 import Link from 'next/link';
 import FadeIn from '../../components/FadeIn';
 import Breadcrumbs from '../../components/Breadcrumbs';
-
-// === 1. THE MOCK DATABASE ===
-const casesDatabase: any = {
-  "1": {
-    id: "1",
-    title: "GLENYORK NIGERIA LIMITED & ANOR v. PANALPINA WORLD TRANSPORT NIG. LIMITED",
-    court: "Supreme Court of Nigeria",
-    appealNo: "APPEAL NO.: SC.34/2008",
-    date: "Friday, February 21, 2025",
-    decision: "Appeal Allowed.",
-    catchphrase: "JURISDICTION — ADMIRALTY JURISDICTION — Whether Section 1(1) & (2) of the Admiralty Jurisdiction Act 1991 extends to carriage of goods by land after offloading from ship.",
-    leadJudgment: `EMMANUEL AKOMAYE AGIM, J.S.C. (Delivering the Leading Judgment): This appeal No. SC.34/2008 was commenced on 14-12-2008 when the appellant herein filed a notice of appeal against the Judgment of the Court of appeal...`,
-    facts: `Sometimes in 1993, the 1st appellant (Plaintiff before the trial court) imported a Diesel Power Engine from the United Kingdom...`,
-    issues: ["1. Whether the Court of Appeal was right...", "2. Whether the facts of this case...", "3. Whether the decision in Aluminum Manufacturing..."],
-    holdings: ["JURISDICTION: The Admiralty jurisdiction...", "ON ISSUE 1...", "ON ISSUE 2...", "ON ISSUE 3...", "ON ISSUE 4...", "CONCLUSION..."],
-    justices: ["Helen Moronkeji Ogunwumiju, JSC", "Emmanuel Akomaye Agim, JSC", "Haruna Simon Tsammani, JSC", "Obande Festus Ogbuinya, JSC", "Mohammed Baba Idris, JSC"],
-    counsel: { appellant: "Mbanefo Ikwegbue, Esq.", respondent: "Ayodeji Ademola, Esq." },
-    casesReferredTo: ["P.E Ltd v. Leventis Technical Ltd", "Aluminum Manufacturing Co. v. NPA"]
-  },
-  "2": {
-    id: "2", title: "State v. Adebayo & Ors", date: "10th November, 2023", court: "Court of Appeal, Akure", appealNo: "CA/AK/45/2023",
-    decision: "Appeal Dismissed.", catchphrase: "CRIMINAL LAW — EVIDENCE", facts: "Placeholder...", issues: [], holdings: [], justices: [], counsel: { appellant: "", respondent: "" }, casesReferredTo: []
-  },
-  "3": {
-    id: "3", title: "OAU Ventures v. Tech Corp", date: "28th October, 2023", court: "Federal High Court, Osogbo", appealNo: "FHC/OS/99/2022",
-    decision: "Judgment for Defendant.", catchphrase: "COMMERCIAL LAW — CONTRACTS", facts: "Placeholder...", issues: [], holdings: [], justices: [], counsel: { appellant: "", respondent: "" }, casesReferredTo: []
-  },
-  "4": {
-    id: "4", title: "In Re: Faculty Election 2021", date: "2021", court: "Student Judicial Council", appealNo: "SJC/001/2021",
-    decision: "Election Nullified.", catchphrase: "ADMINISTRATIVE LAW — ELECTORAL MATTERS", facts: "Placeholder...", issues: [], holdings: [], justices: [], counsel: { appellant: "", respondent: "" }, casesReferredTo: []
-  },
-  "5": {
-    id: "5", title: "Dr. X v. Governing Council", date: "2020", court: "National Industrial Court", appealNo: "NICN/IB/22/2020",
-    decision: "Claim Succeeded.", catchphrase: "EMPLOYMENT LAW — FAIR HEARING", facts: "Placeholder...", issues: [], holdings: [], justices: [], counsel: { appellant: "", respondent: "" }, casesReferredTo: []
+import DownloadButton from './download';
+import ShareButton from '@/app/components/ShareButton';
+import { getBaseUrl } from '@/app/components/BaseUrl';
+type CourtCase = {
+  id: number;
+  FILE_NAME: string;
+  TITLE: string;
+  APPELLANTS: string[];
+  RESPONDENTS: string[];
+  DATE_OF_JUDGMENT: string;
+  COURT: string;
+  PANEL: string[];
+  APPEAL_NO: string;
+  JURISDICTION_ISSUE: string;
+  FACTS: string;
+  ISSUES_FOR_DETERMINATION: string[];
+  HELD: string;
+  CASES_REFERRED_TO: string[];
+  CONCURRING_OPINIONS: string[];
+  OUTCOME: string;
+  Counsel: {
+    APPELLANTS: string,
+    RESPONDENTS: string
   }
 };
 
-const getCaseData = (id: string) => {
-  return casesDatabase[id] || null;
-};
-
-// === 2. THE COMPONENT (UPDATED FOR NEXT.JS 15) ===
-// We change 'params' to be a Promise and make the function async
 export default async function CaseDetail(props: { params: Promise<{ id: string }> }) {
   const params = await props.params; // <--- THIS FIXES THE ERROR
-  const caseData = getCaseData(params.id);
+
+const baseUrl = getBaseUrl()
+const res = await fetch(`${baseUrl}/api/cases`, {
+  method: "GET",
+  headers: {
+    "Content-type": "application/json"
+  },
+  cache: 'no-store' ,
+})
+
+
+const {cases} = await res.json()
+
+const caseData =  cases.find((c: CourtCase)=> c.id === Number(params.id))
+
+
 
   if (!caseData) {
     return (
@@ -58,7 +57,7 @@ export default async function CaseDetail(props: { params: Promise<{ id: string }
       </div>
     );
   }
-
+  
   return (
     <div className="bg-gray-50 min-h-screen py-12 text-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -81,28 +80,28 @@ export default async function CaseDetail(props: { params: Promise<{ id: string }
             <FadeIn direction="up">
               <div className="bg-white p-10 rounded-xl shadow-sm border-t-4 border-[#002147]">
                 <div className="flex justify-between items-start mb-4">
-                  <span className="text-sm font-bold text-gray-500 uppercase tracking-wider">{caseData.court}</span>
-                  <span className="text-sm font-bold text-[#002147] bg-blue-50 px-3 py-1 rounded">{caseData.date}</span>
+                  <span className="text-sm font-bold text-gray-500 uppercase tracking-wider">{caseData.COURT}</span>
+                  <span className="text-sm font-bold text-[#002147] bg-blue-50 px-3 py-1 rounded">{caseData.DATE_OF_JUDGMENT}</span>
                 </div>
                 <h1 className="text-2xl md:text-3xl font-extrabold text-[#002147] mb-3 leading-tight uppercase">
-                  {caseData.title}
+                  {caseData.TITLE}
                 </h1>
                 <p className="text-xl text-[#d4af37] font-serif italic font-semibold mb-8">
-                  {caseData.appealNo}
+                  {caseData.APPEAL_NO}
                 </p>
                 <div className="bg-gray-50 border-l-4 border-[#d4af37] p-6 italic text-gray-800 font-serif text-lg leading-relaxed">
-                  {caseData.catchphrase}
+                  {caseData. JURISDICTION_ISSUE}
                 </div>
               </div>
             </FadeIn>
 
             {/* Lead Judgment */}
-            {caseData.leadJudgment && (
+            {caseData.HELD && (
               <FadeIn direction="up" delay={0.1}>
                 <div className="bg-white p-10 rounded-xl shadow-sm border border-gray-200">
                   <h3 className="text-[#002147] font-bold uppercase tracking-widest text-base mb-6 border-b pb-2">Lead Judgment (Excerpt)</h3>
                   <p className="text-lg md:text-xl text-gray-800 leading-loose text-justify whitespace-pre-line">
-                    {caseData.leadJudgment}
+                    {caseData.HELD}
                   </p>
                 </div>
               </FadeIn>
@@ -113,7 +112,7 @@ export default async function CaseDetail(props: { params: Promise<{ id: string }
               <div className="bg-white p-10 rounded-xl shadow-sm border border-gray-200">
                 <h3 className="text-[#002147] font-bold uppercase tracking-widest text-base mb-6 border-b pb-2">Facts of the Case</h3>
                 <p className="text-lg md:text-xl text-gray-800 leading-loose text-justify whitespace-pre-line">
-                  {caseData.facts}
+                  {caseData.FACTS}
                 </p>
               </div>
             </FadeIn>
@@ -123,7 +122,7 @@ export default async function CaseDetail(props: { params: Promise<{ id: string }
               <div className="bg-white p-10 rounded-xl shadow-sm border border-gray-200">
                 <h3 className="text-[#002147] font-bold uppercase tracking-widest text-base mb-6 border-b pb-2">Issues</h3>
                 <ul className="space-y-6">
-                  {caseData.issues.map((issue: string, index: number) => (
+                  {caseData.ISSUES_FOR_DETERMINATION.map((issue: string, index: number) => (
                     <li key={index} className="flex items-start">
                       <span className="text-[#d4af37] font-bold mr-4 text-2xl">?</span>
                       <span className="text-lg md:text-xl text-gray-800 font-medium italic leading-relaxed">{issue}</span>
@@ -138,7 +137,7 @@ export default async function CaseDetail(props: { params: Promise<{ id: string }
               <div className="bg-white p-10 rounded-xl shadow-sm border border-gray-200">
                 <h3 className="text-[#002147] font-bold uppercase tracking-widest text-base mb-6 border-b pb-2">Holdings</h3>
                 <div className="space-y-8">
-                  {caseData.holdings.map((holding: string, index: number) => (
+                  {caseData.CASES_REFERRED_TO.map((holding: string, index: number) => (
                     <div key={index} className="flex items-start">
                       <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#002147] text-white flex items-center justify-center font-bold text-lg mr-5 mt-1">
                         {index + 1}
@@ -159,7 +158,7 @@ export default async function CaseDetail(props: { params: Promise<{ id: string }
               <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
                 <h3 className="font-bold text-[#002147] mb-4 text-lg">⚖️ Justices</h3>
                 <ul className="space-y-3">
-                  {caseData.justices.map((judge: string, idx: number) => (
+                  {caseData.PANEL.map((judge: string, idx: number) => (
                     <li key={idx} className="text-base text-gray-700 border-b border-gray-50 last:border-0 pb-2 mb-2">{judge}</li>
                   ))}
                 </ul>
@@ -171,24 +170,23 @@ export default async function CaseDetail(props: { params: Promise<{ id: string }
                 <h3 className="font-bold text-[#002147] mb-4 text-lg">👔 Counsel</h3>
                 <div className="mb-4">
                   <p className="text-xs text-gray-400 uppercase font-bold">For Appellant</p>
-                  <p className="text-base text-gray-900 mt-1 font-medium">{caseData.counsel.appellant}</p>
+                  <p className="text-base text-gray-900 mt-1 font-medium">{caseData.Counsel.APPELLANTS}</p>
                 </div>
                 <div>
                   <p className="text-xs text-gray-400 uppercase font-bold">For Respondent</p>
-                  <p className="text-base text-gray-900 mt-1 font-medium">{caseData.counsel.respondent}</p>
+                  <p className="text-base text-gray-900 mt-1 font-medium">{caseData.Counsel.RESPONDENTS}</p>
                 </div>
               </div>
             </FadeIn>
 
             <FadeIn direction="left" delay={0.5}>
               <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 sticky top-24">
-                <button className="w-full bg-[#d4af37] text-[#002147] font-bold py-4 rounded-lg hover:bg-[#e6c248] transition shadow-md active:scale-95 mb-3 flex items-center justify-center text-base md:text-lg">
-                  <span>📥</span> <span className="ml-2">Download PDF</span>
-                </button>
+                 <DownloadButton caseData={caseData}/>
                 {/* Ensure this button text doesn't wrap awkwardly */}
-                <button className="w-full border border-[#002147] text-[#002147] font-bold py-4 rounded-lg hover:bg-gray-50 transition active:scale-95 flex items-center justify-center text-base md:text-lg">
-                  <span className="ml-2">Share Case</span>
-                </button>
+                <ShareButton 
+  title={caseData.TITLE}
+  url={`${baseUrl}/reports/${params.id}`}
+/>
               </div>
             </FadeIn>
           </div>
@@ -212,7 +210,7 @@ export default async function CaseDetail(props: { params: Promise<{ id: string }
               <div className="max-w-4xl mx-auto">
                 {/* FIX: Reduce text size on mobile (text-2xl) */}
                 <p className="text-2xl md:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight">
-                  "{caseData.decision}"
+                  {caseData.OUTCOME}
                 </p>
               </div>
 

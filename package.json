@@ -15,9 +15,15 @@
     "jose": "^6.1.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^9.0.0",
+<<<<<<< HEAD
     "next": "16.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0"
+=======
+    "next": "^16.0.8",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
+>>>>>>> 95096adf98c7bc1f26fbd5d779c7668e2748e075
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
