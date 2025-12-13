@@ -1,14 +1,14 @@
-// app/register/page.tsx
 'use client'; // REQUIRED because we use useState
 
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'; // For redirecting
 import FadeIn from '../components/FadeIn';
+import SuccessModal from '../components/SuccessModal';
 
 export default function RegisterPage() {
   const router = useRouter();
-  
+
   // Form State
   const [formData, setFormData] = useState({
     name: '',
@@ -17,8 +17,9 @@ export default function RegisterPage() {
     password: '',
     confirmPassword: ''
   });
-  
+
   const [status, setStatus] = useState({ loading: false, error: '' });
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,24 +46,33 @@ export default function RegisterPage() {
 
       if (!res.ok) throw new Error(data.error || 'Registration failed');
 
-      // Success! Redirect to login
-      alert('Account created! Please log in.');
-      router.push('/login');
+      // Success! Show modal
+      setShowSuccessModal(true);
+      // router.push('/login'); // Moved to modal close
 
-    } catch (err: any) {
-      setStatus({ loading: false, error: err.message });
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Registration failed';
+      setStatus({ loading: false, error: errorMessage });
     }
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <SuccessModal
+        isOpen={showSuccessModal}
+        onClose={() => router.push('/login')}
+        title="Account Created Successfully!"
+        message="Your account has been created. You can now log in to access the dashboard."
+        buttonText="Go to Login"
+        onButtonClick={() => router.push('/login')}
+      />
       <FadeIn direction="up" className="max-w-md w-full">
         <div className="bg-white p-10 rounded-xl shadow-xl border border-gray-200">
-          
+
           <div className="text-center mb-8">
             <h2 className="text-3xl font-extrabold text-[#002147]">Create Account</h2>
           </div>
@@ -75,7 +85,7 @@ export default function RegisterPage() {
           )}
 
           <form className="space-y-4" onSubmit={handleSubmit}>
-            
+
             {/* Inputs... I'll condense the repetition, use the same styles as before */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>

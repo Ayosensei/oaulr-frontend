@@ -37,7 +37,7 @@ export default function Carousel() {
   }, []);
 
   return (
-    <div className="relative h-[500px] w-full overflow-hidden bg-[#002147]">
+    <div className="relative h-[300px] md:h-[500px] w-full overflow-hidden bg-[#002147]">
       {/* Added bg color to prevent white flash while image loads */}
 
       <AnimatePresence mode='wait'>
@@ -66,8 +66,8 @@ export default function Carousel() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
-              // CHANGED: text-3xl for mobile, md:text-6xl for desktop
-              className="text-3xl md:text-6xl font-bold mb-4 tracking-tight px-4"
+              // CHANGED: text-2xl for mobile, md:text-6xl for desktop
+              className="text-2xl md:text-6xl font-bold mb-4 tracking-tight px-4"
             >
               {slides[currentIndex].title}
             </motion.h2>
@@ -75,8 +75,8 @@ export default function Carousel() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.7 }}
-              // CHANGED: text-lg for mobile, md:text-2xl for desktop
-              className="text-lg md:text-2xl text-gray-200 max-w-2xl px-2"
+              // CHANGED: text-sm for mobile, md:text-2xl for desktop
+              className="text-sm md:text-2xl text-gray-200 max-w-2xl px-2"
             >
               {slides[currentIndex].subtitle}
             </motion.p>
@@ -85,12 +85,12 @@ export default function Carousel() {
       </AnimatePresence>
 
       {/* Dots Indicators */}
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center space-x-3 z-20">
+      <div className="absolute bottom-4 md:bottom-8 left-0 right-0 flex justify-center space-x-3 z-20">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex ? "bg-[#d4af37] w-8" : "bg-white/50 hover:bg-white"
+            className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${index === currentIndex ? "bg-[#d4af37] w-6 md:w-8" : "bg-white/50 hover:bg-white"
               }`}
           />
         ))}

@@ -5,11 +5,14 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import FadeIn from '../components/FadeIn';
+import SuccessModal from '../components/SuccessModal';
 
 export default function LoginPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [status, setStatus] = useState({ loading: false, error: '' });
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [userName, setUserName] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,30 +22,40 @@ export default function LoginPage() {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
+        credentials: "include"
       });
 
       const data = await res.json();
 
       if (!res.ok) throw new Error(data.error || 'Login failed');
 
-      // 1. Save user info to LocalStorage (The "Poor man's session")
-      localStorage.setItem('oaulr_user', JSON.stringify(data.user));
 
       // 2. Redirect to Dashboard/Home
-      alert(`Welcome back, ${data.user.name}!`);
-      router.push('/'); 
+      setUserName(data.user.name);
+      setShowSuccessModal(true);
+      // alert(`Welcome back, ${data.user.name}!`);
+      // router.push('/'); 
 
-    } catch (err: any) {
-      setStatus({ loading: false, error: err.message });
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Login failed';
+      setStatus({ loading: false, error: errorMessage });
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4">
+      <SuccessModal
+        isOpen={showSuccessModal}
+        onClose={() => router.push('/dashboard')}
+        title="Welcome Back!"
+        message={`Successfully logged in as ${userName}. Redirecting you to the dashboard...`}
+        buttonText="Go to Dashboard"
+        onButtonClick={() => router.push('/dashboard')}
+      />
       <FadeIn direction="up" className="max-w-md w-full">
         <div className="bg-white p-10 rounded-xl shadow-xl border border-gray-200">
-          
+
           <div className="text-center mb-8">
             <h2 className="text-3xl font-extrabold text-[#002147]">Sign In</h2>
           </div>
@@ -56,23 +69,23 @@ export default function LoginPage() {
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-              <input 
-                type="email" 
-                required 
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
+              <input
+                type="email"
+                required
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 // ADDED: text-gray-900
-                className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#002147]" 
+                className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#002147]"
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-              <input 
-                type="password" 
-                required 
-                onChange={(e) => setFormData({...formData, password: e.target.value})}
+              <input
+                type="password"
+                required
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 // ADDED: text-gray-900
-                className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#002147]" 
+                className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#002147]"
               />
             </div>
 
@@ -83,7 +96,7 @@ export default function LoginPage() {
           </form>
 
           <div className="text-center mt-4">
-             <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600">
               New here? <Link href="/register" className="text-[#003366] font-bold underline">Create Account</Link>
             </p>
           </div>

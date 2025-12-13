@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function Footer() {
   return (
     <footer className="bg-[#002147] text-white border-t border-[#d4af37]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
           {/* Column 1: Brand & Description */}
@@ -77,7 +77,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <span className="mr-2">📧</span>
-                info@oaulawreports.com
+                oaulawreports@gmail.com
               </li>
               <li className="flex items-center">
                 <span className="mr-2">📞</span>

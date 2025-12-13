@@ -12,21 +12,6 @@ export default function Home() {
       <section className="bg-[#ffffff] text-white relative">
         <Carousel />
 
-        {/* Search Bar Overlay - Positioned over the bottom of the carousel */}
-        <div className="relative -mt-8 z-20 px-4 py-0">
-          <FadeIn direction="up" delay={0.5}>
-            <div className="max-w-3xl mx-auto flex bg-white rounded-lg overflow-hidden shadow-2xl border border-gray-200 p-2">
-              <input
-                type="text"
-                placeholder="Search cases, citations, or judges..."
-                className="flex-grow p-4 text-gray-800 outline-none placeholder-gray-400"
-              />
-              <button className="bg-[#002147] text-white px-8 py-3 font-bold hover:bg-[#003366] transition rounded">
-                Search
-              </button>
-            </div>
-          </FadeIn>
-        </div>
       </section>
 
       {/* Recently Uploaded Section */}
@@ -34,7 +19,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-end mb-10">
             <FadeIn direction="right">
-              <h2 className="text-3xl font-bold text-[#002147]">Recently Uploaded</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#002147]">Recently Uploaded</h2>
               <p className="text-gray-500 mt-1">The latest judgments added to the repository.</p>
             </FadeIn>
             <FadeIn direction="left">
@@ -44,11 +29,11 @@ export default function Home() {
             </FadeIn>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {recentCases.map((item, index) => (
               <FadeIn key={item.id} delay={index * 0.1} direction="up" className="h-full">
                 <Link href={`/reports/${item.id}`} className="block h-full">
-                  <div className="group h-full bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-xl hover:border-[#002147] transition-all duration-300 cursor-pointer hover:-translate-y-1">
+                  <div className="group h-full bg-white border border-gray-200 rounded-xl p-4 md:p-6 shadow-sm hover:shadow-xl hover:border-[#002147] transition-all duration-300 cursor-pointer hover:-translate-y-1">
                     <div className="flex justify-between items-start mb-4">
                       <span className="bg-blue-50 text-[#002147] text-xs font-bold px-2 py-1 rounded uppercase">
                         {item.category}
@@ -78,7 +63,7 @@ export default function Home() {
 
           {/* Left: Image */}
           <FadeIn direction="right">
-            <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+            <div className="relative h-[250px] md:h-[400px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
               <img
                 src="https://images.unsplash.com/photo-1505664063603-28e48ca204eb?q=80&w=2600&auto=format&fit=crop"
                 alt="Law Library"
@@ -90,7 +75,7 @@ export default function Home() {
           {/* Right: Content */}
           <div>
             <FadeIn direction="up">
-              <h2 className="text-3xl font-bold text-[#002147] mb-6">Why Subscribe to OAULR?</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#002147] mb-6">Why Subscribe to OAULR?</h2>
             </FadeIn>
 
             <div className="space-y-6">
@@ -101,7 +86,7 @@ export default function Home() {
               ].map((feature, idx) => (
                 <FadeIn key={idx} delay={idx * 0.2} direction="up">
                   <div className="flex items-start">
-                    <div className="flex-shrink-0 h-12 w-12 rounded-lg bg-white shadow-sm flex items-center justify-center text-2xl border border-gray-100">
+                    <div className="flex-shrink-0 h-10 w-10 md:h-12 md:w-12 rounded-lg bg-white shadow-sm flex items-center justify-center text-xl md:text-2xl border border-gray-100">
                       {feature.icon}
                     </div>
                     <div className="ml-4">
