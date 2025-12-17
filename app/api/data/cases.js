@@ -52,7 +52,7 @@ const cases =[
 ,
   
   {
-  "id": 2,
+  "id": 3,
   "FILE_NAME": "PAPER 3 2024 & 2025.docx",
   "TITLE": "NDAMZI DICKSON v. EMMANUEL OLA IJALAYE",
   "APPELLANTS": [
@@ -105,7 +105,7 @@ const cases =[
 ,
   
     {
-      "id": 3,
+      "id": 2,
       "FILE_NAME": "PAPER 2 2024 & 2025.docx",
       "TITLE": "AFRIBANK NIGERIA PLC & ORS v. NIGERIAN DEPOSIT INSURANCE CORPORATION & ORS",
       "APPELLANTS": [
@@ -161,7 +161,7 @@ const cases =[
     },
   
     {
-      "id": "4",
+      "id": 4,
       "FILE_NAME": "PAPER 4 2024 & 2025.docx",
       "TITLE": "DR. (MRS.) NGOZI OKONJO-IWEALA v. MR. SAHEED FAWEHINMI & ORS",
       "APPELLANTS": [
@@ -280,7 +280,7 @@ const cases =[
     },
 
     {
-      "id": "6",
+      "id": 7,
       "FILE_NAME": "PAPER 3 2023 & 2024.docx",
       "TITLE": "ATTORNEY-GENERAL OF LAGOS STATE v. NATIONAL SPORTS LOTTERY LIMITED & ANOR",
       "APPELLANTS": [
@@ -335,7 +335,7 @@ const cases =[
     },
     
     {
-      "id": "7",
+      "id": 6,
       "FILE_NAME": "PAPER 2 2023 & 2024.docx",
       "TITLE": "H.R.M OBA SAMUEL ADEBAYO ADEGBOLA(ELERUWA) & ORS v. MR. JAMES OLATUNDE IDOWU & ORS",
       "APPELLANTS": [
@@ -408,7 +408,7 @@ const cases =[
     }},
 
   {
-  "id": "8",
+  "id": 8,
   "FILE_NAME": "PAPER 4 2023 & 2024.docx",
   "TITLE": "BARNAX ENGINEERING COMPANY NIGERIA LIMITED v. GOVERNMENT OF RIVERS STATE & ANOR",
   "APPELLANTS": [

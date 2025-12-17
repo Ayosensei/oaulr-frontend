@@ -22,7 +22,7 @@ export default function ReportsPage() {
         <ReportsClient initialReports={reports} />
 
         {/* Pagination Mock */}
-        <FadeIn delay={0.8} direction="up">
+        {/*<FadeIn delay={0.8} direction="up">
           <div className="mt-10 flex justify-center space-x-2">
             <button className="px-4 py-2 border rounded text-gray-500 disabled:opacity-50 hover:bg-gray-100 transition">Previous</button>
             <button className="px-4 py-2 border rounded bg-[#002147] text-white transition transform active:scale-95">1</button>
@@ -30,7 +30,7 @@ export default function ReportsPage() {
             <button className="px-4 py-2 border rounded text-[#002147] hover:bg-gray-100 transition transform active:scale-95">3</button>
             <button className="px-4 py-2 border rounded text-[#002147] hover:bg-gray-100 transition">Next</button>
           </div>
-        </FadeIn>
+        </FadeIn>*/}
 
       </div>
     </div>

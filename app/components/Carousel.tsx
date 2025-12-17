@@ -9,19 +9,19 @@ const slides = [
   {
     id: 1,
     url: "https://images.unsplash.com/photo-1479142506502-19b3a3b7ff33?q=80&w=870&auto=format&fit=crop",
-    title: "OAU Law Reports Unit, Faculty of Law, OAU",
-    subtitle: "The premier repository for OAU legal precedents."
+    title: "OAU Law Reports Unit (OAULR)",
+    subtitle: "The only University-based Law Reports in Nigeria."
   },
   {
     id: 2,
     url: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2600&auto=format&fit=crop",
-    title: "Upholding Justice",
-    subtitle: "Excellence in legal education and reporting."
+    title: "",
+    subtitle: ""
   },
   {
     id: 3,
     url: "https://images.unsplash.com/photo-1617203443952-6d2619f7ff4e?q=80&w=870&auto=format&fit=crop",
-    title: "Digital Archive",
+    title: "Welcome to our Digital Archive",
     subtitle: "Access thousands of judgments from anywhere."
   }
 ];
@@ -32,7 +32,7 @@ export default function Carousel() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 5000);
+    }, 10000);
     return () => clearInterval(timer);
   }, []);
 

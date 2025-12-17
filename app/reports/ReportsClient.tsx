@@ -108,7 +108,7 @@ export default function ReportsClient({ initialReports }: ReportsClientProps) {
                                             {lawCase.title}
                                         </h3>
                                     </Link>
-                                    <p className="text-[#d4af37] font-medium text-xs md:text-sm mt-1 italic">
+                                    <p className="text-[#d4af37] font-bold text-xs md:text-sm mt-1 italic">
                                         {lawCase.citation}
                                     </p>
                                     <p className="text-gray-600 text-sm mt-3 line-clamp-2">
