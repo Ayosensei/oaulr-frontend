@@ -110,6 +110,7 @@ export default function RegisterPage() {
                 <option>Law School Student</option>
                 <option>Legal Practitioner</option>
                 <option>Academic / Researcher</option>
+                <option>Judicial Officer</option>
               </select>
             </div>
 
