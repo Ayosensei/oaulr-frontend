@@ -5,23 +5,23 @@ import FadeIn from '../components/FadeIn';
 const pricingPlans = [
   {
     title: "Undergraduate Student (OAU)",
-    price: "₦2,000",
+    price: "₦5,000",
     period: "/month",
-    features: ["Access to OAU Law Reports", "Basic Search", "Mobile Access"],
+    features: ["Full Case Access", "Advanced Search", "Citation Tools"],
     buttonText: "Verify & Subscribe",
     highlight: false
   },
   {
     title: "Undergraduate Student (Other)",
-    price: "₦2,000",
+    price: "₦5,000",
     period: "/month",
-    features: ["Access to OAU Law Reports", "Basic Search", "Mobile Access"],
+    features: ["Full Case Access", "Advanced Search", "Citation Tools"],
     buttonText: "Subscribe Now",
     highlight: false
   },
   {
     title: "Law School Student",
-    price: "₦3,000",
+    price: "₦5,000",
     period: "/month",
     features: ["Full Case Access", "Advanced Search", "Citation Tools"],
     buttonText: "Subscribe Now",
@@ -29,28 +29,28 @@ const pricingPlans = [
   },
   {
     title: "Legal Practitioner",
-    price: "₦20,000",
-    period: "/6 months",
-    altPrice: "₦40,000 /yearly",
-    features: ["Full Commercial License", "Priority Support", "Multiple Device Login", "Offline Access"],
+    price: "₦5,000",
+    period: "/month",
+    altPrice: "₦60,000 /yearly",
+    features: ["Full Case Access", "Advanced Search", "Citation Tools"],
     buttonText: "Subscribe Now",
     highlight: false
   },
   {
     title: "Academic Researcher",
-    price: "₦20,000",
-    period: "/6 months",
-    altPrice: "₦40,000 /yearly",
-    features: ["Archive Access", "Citation Export", "Research Tools", "Priority Support"],
+    price: "₦5,000",
+    period: "/month",
+    altPrice: "₦60,000 /yearly",
+    features: ["Full Case Access", "Advanced Search", "Citation Tools"],
     buttonText: "Subscribe Now",
     highlight: false
   },
   {
     title: "Judicial Officer",
-    price: "₦25,000",
-    period: "/6 months",
-    altPrice: "₦50,000 /yearly",
-    features: ["Premium Access", "All Features Included", "Dedicated Support", "Institutional Login"],
+    price: "₦5,000",
+    period: "/month",
+    altPrice: "₦60,000 /yearly",
+    features: ["Full Case Access", "Advanced Search", "Citation Tools"],
     buttonText: "Subscribe Now",
     highlight: false
   }
@@ -141,9 +141,124 @@ export default function SubscribePage() {
 
         </div>
       </div>
-      <div className="mt-4 text-center">
-        <p className="text-4xl font-extrabold text-[#002147] p-10"> Unit Account Number: 2047860210 <br/> Account Name: Ife Law Report <br/> Bank: First Bank <br/>Contact Number(s): +234 805 816 3438, +234 816 353 3315</p>
+      
+      {/* Payment Information Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <FadeIn direction="up" delay={0.3}>
+          <div className="bg-white rounded-2xl shadow-xl border-2 border-[#d4af37] overflow-hidden">
+            
+            {/* Header */}
+            <div className="bg-gradient-to-r from-[#002147] to-[#003366] text-white px-6 py-8 text-center">
+              <h3 className="text-2xl md:text-3xl font-extrabold mb-2">
+                Payment Information
+              </h3>
+              <p className="text-base md:text-lg text-gray-300">
+                Complete your subscription by making payment to the account below
+              </p>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 md:p-10">
+              
+              {/* Bank Account Details */}
+              <div className="mb-8">
+                <h4 className="text-lg md:text-xl font-bold text-[#002147] mb-6 text-center">
+                  Bank Account Details
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                  
+                  {/* Account Number */}
+                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-5 border border-gray-200 hover:shadow-lg transition-shadow">
+                    <div className="flex items-center justify-center mb-3">
+                      <span className="text-3xl">🏦</span>
+                    </div>
+                    <p className="text-xs md:text-sm text-gray-600 text-center mb-2 font-medium">
+                      Account Number
+                    </p>
+                    <p className="text-xl md:text-2xl font-extrabold text-[#002147] text-center tracking-wide">
+                      2047860210
+                    </p>
+                  </div>
+
+                  {/* Account Name */}
+                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-5 border border-gray-200 hover:shadow-lg transition-shadow">
+                    <div className="flex items-center justify-center mb-3">
+                      <span className="text-3xl">👤</span>
+                    </div>
+                    <p className="text-xs md:text-sm text-gray-600 text-center mb-2 font-medium">
+                      Account Name
+                    </p>
+                    <p className="text-lg md:text-xl font-extrabold text-[#002147] text-center">
+                      Ife Law Report
+                    </p>
+                  </div>
+
+                  {/* Bank Name */}
+                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-5 border border-gray-200 hover:shadow-lg transition-shadow">
+                    <div className="flex items-center justify-center mb-3">
+                      <span className="text-3xl">🏛️</span>
+                    </div>
+                    <p className="text-xs md:text-sm text-gray-600 text-center mb-2 font-medium">
+                      Bank Name
+                    </p>
+                    <p className="text-lg md:text-xl font-extrabold text-[#002147] text-center">
+                      First Bank
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* Divider */}
+              <div className="border-t-2 border-gray-200 my-8"></div>
+
+              {/* Contact Information */}
+              <div>
+                <h4 className="text-lg md:text-xl font-bold text-[#002147] mb-6 text-center">
+                  Need Help? Contact Us
+                </h4>
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+                  
+                  {/* Phone Numbers */}
+                  <div className="flex items-center gap-3 bg-[#002147] text-white px-6 py-4 rounded-lg hover:bg-[#003366] transition-colors">
+                    <span className="text-2xl">📞</span>
+                    <div className="text-left">
+                      <p className="text-xs text-gray-300 mb-1">Call Us</p>
+                      <p className="text-sm md:text-base font-semibold">+234 805 816 3438</p>
+                      <p className="text-sm md:text-base font-semibold">+234 816 353 3315</p>
+                    </div>
+                  </div>
+
+                  {/* Email */}
+                  <div className="flex items-center gap-3 bg-[#d4af37] text-[#002147] px-6 py-4 rounded-lg hover:bg-[#c49d2f] transition-colors">
+                    <span className="text-2xl">📧</span>
+                    <div className="text-left">
+                      <p className="text-xs opacity-80 mb-1">Email Us</p>
+                      <p className="text-sm md:text-base font-semibold">oaulawreports@gmail.com</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* Important Note */}
+              <div className="mt-8 bg-blue-50 border-l-4 border-[#002147] p-4 md:p-6 rounded-r-lg">
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl flex-shrink-0">ℹ️</span>
+                  <div>
+                    <p className="font-bold text-[#002147] mb-2">Important:</p>
+                    <p className="text-sm md:text-base text-gray-700">
+                      After making payment, please send proof of payment along with your registration details to our email or WhatsApp for account activation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </FadeIn>
       </div>
+
     </div>
   );
 }

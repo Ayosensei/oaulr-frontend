@@ -54,7 +54,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-3">
               <li>
                 <Link href="/terms" className="text-gray-300 hover:text-white hover:underline transition">
-                  Terms of Service
+                  Terms & Conditions
                 </Link>
               </li>
               <li>
@@ -77,7 +77,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <span className="mr-2">📧</span>
-                oaulawreports@gmail.com
+                <a>oaulawreports@gmail.com</a>
               </li>
               <li className="flex items-center">
                 <span className="mr-2">📞</span>
