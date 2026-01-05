@@ -53,12 +53,12 @@ export default function Footer() {
             </h3>
             <ul className="mt-4 space-y-3">
               <li>
-                <Link href="#" className="text-gray-300 hover:text-white hover:underline transition">
+                <Link href="/terms" className="text-gray-300 hover:text-white hover:underline transition">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-300 hover:text-white hover:underline transition">
+                <Link href="/privacy" className="text-gray-300 hover:text-white hover:underline transition">
                   Privacy Policy
                 </Link>
               </li>
@@ -73,7 +73,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-3 text-gray-300 text-sm">
               <li className="flex items-start">
                 <span className="mr-2">📍</span>
-                Faculty of Law, <br/>Obafemi Awolowo University,<br/> Ile-Ife, Osun State.
+                Head Office Address: Law Reports Unit <br/> Behind New Moot & Mock Court building <br/> Faculty of Law, <br/>Obafemi Awolowo University,<br/> Ile-Ife, Osun State.
               </li>
               <li className="flex items-center">
                 <span className="mr-2">📧</span>
@@ -81,7 +81,11 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <span className="mr-2">📞</span>
-                +234 800 OAU LAW
+                Managing Editor: +2348058163438 <br/> Senior Editor: +2348163533315
+              </li>
+              <li className="flex items-center">
+                <span className="mr-2">📱</span>
+                <a href="https://www.facebook.com/groups/704983879159290/permalink/705182099139468/">@Obafemi Awolowo University Law Reports (OAULR)</a>
               </li>
             </ul>
           </div>

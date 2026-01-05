@@ -141,6 +141,9 @@ export default function SubscribePage() {
 
         </div>
       </div>
+      <div className="mt-4 text-center">
+        <p className="text-4xl font-extrabold text-[#002147] p-10"> Unit Account Number: 2047860210 <br/> Account Name: Ife Law Report <br/> Bank: First Bank <br/>Contact Number(s): +234 805 816 3438, +234 816 353 3315</p>
+      </div>
     </div>
   );
 }
